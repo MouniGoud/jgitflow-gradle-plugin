@@ -28,6 +28,7 @@ import io.github.robwin.jgitflow.tasks.InitJGitflowTask
 import io.github.robwin.jgitflow.tasks.ReleaseFinishTask
 import io.github.robwin.jgitflow.tasks.ReleasePublishTask
 import io.github.robwin.jgitflow.tasks.ReleaseStartTask
+import io.github.robwin.jgitflow.tasks.HotfixFinishPublishTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -43,6 +44,7 @@ class JGitflowPlugin implements Plugin<Project> {
     static final String HOTFIX_START_TASK_NAME = 'hotfixStart'
     static final String HOTFIX_FINISH_TASK_NAME = 'hotfixFinish'
     static final String HOTFIX_PUBLISH_TASK_NAME = 'hotfixPublish'
+    static final String HOTFIX_FINISH_PUBLISH_TASK_NAME = 'hostfixFinishPublish'
     static final String GROUP_NAME = 'jgitflow'
 
     @Override
@@ -104,6 +106,13 @@ class JGitflowPlugin implements Plugin<Project> {
                 description: ' Merges a hotfix branch back into the master branch and develop branch.',
                 group: GROUP_NAME) {
         }
+        
+        project.task(
+				HOTFIX_FINISH_PUBLISH_TASK_NAME,
+				type: HotfixFinishPublishTask,
+				description: ' Merges a hotfix branch back into the master branch and develop branch and Publish to remote origin.',
+				group: GROUP_NAME) {
+		}
 
         project.task(
                 HOTFIX_PUBLISH_TASK_NAME,
